@@ -1,0 +1,7 @@
+*.o
+tag
+tags
+compile_commands.json
+lib
+bin
+include

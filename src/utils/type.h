@@ -1,3 +1,6 @@
+/*\
+|*| § Made by Anders                                                    (¬_¬)
+\*/
 #pragma once
 
 #include <stdint.h>
@@ -41,6 +44,6 @@ typedef struct {int64 x, y, z;}    vec3i64;
 typedef struct {int64 x, y, z, w;} vec4i64;
 
 // vector floats
-typedef struct {float x, y;}       vec2f;
-typedef struct {float x, y, z;}    vec3f;
-typedef struct {float x, y, z, w;} vec4f;
+typedef struct vec2 {float x, y;}       vec2;
+typedef struct vec3 {float x, y, z;}    vec3;
+typedef struct vec4 {float x, y, z, w;} vec4;

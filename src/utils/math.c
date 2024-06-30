@@ -2,13 +2,10 @@
 |*| § Made by Anders                                                    (¬_¬)
 \*/
 #include "utils/math.h"
-#include "SDL3/SDL_rect.h"
-#include "SDL3/SDL_render.h"
 #include "type.h"
 #include <stdio.h>
 
-extern SDL_Renderer *gRender;
-extern vec2i gWinSize;
+vec2i gWinSize;
 
 float NormalizeX(float x)
 {
@@ -20,22 +17,31 @@ float NormalizeY(float y)
 	return ((y*(float)gWinSize.y/-2)+((float)gWinSize.y / 2));
 }
 
-int PointInFRectN(SDL_FPoint mouse, SDL_FRect rect)
+// return true if vec2 is insize vec4
+int PointInRectF(vec2 *p, vec4 *r)
 {
-	return SDL_PointInRectFloat(&mouse, &(SDL_FRect){
+	return  ( p && r && (p->x >= r->x) && (p->x < (r->x + r->z)) &&
+		(p->y >= r->y) && (p->y < (r->y + r->w)) ) ? 1 : 0;
+}
+
+// Point in Rect Normalized
+int PointInFRectN(vec2 mouse, vec4 rect)
+{
+	return PointInRectF(&mouse, &(vec4){
 			NormalizeX(rect.x),
 			NormalizeY(rect.y),
-			rect.w,
-			rect.h
+			rect.z,
+			rect.w
 			});
 }
 
-int PointInFRectNOffset(SDL_FPoint mouse, SDL_FRect rect, int offset)
+// Point in Rect Normalized Offset
+int PointInFRectNOffset(vec2 mouse, vec4 rect, int offset)
 {
-	return SDL_PointInRectFloat(&mouse, &(SDL_FRect){
+	return PointInRectF(&mouse, &(vec4){
 			NormalizeX(rect.x) - offset,
 			NormalizeY(rect.y),
-			rect.w,
-			rect.h
+			rect.z,
+			rect.w
 			});
 }

@@ -3,10 +3,10 @@
 \*/
 #pragma once
 
-#include <SDL3/SDL_rect.h>
+#include "utils/utils.h"
 
 float NormalizeX(float x);
 float NormalizeY(float y);
 
-int PointInFRectN(SDL_FPoint mouse, SDL_FRect rect);
-int PointInFRectNOffset(SDL_FPoint mouse, SDL_FRect rect, int offset);
+int PointInFRectN(vec2 mouse, vec4 rect);
+int PointInFRectNOffset(vec2 mouse, vec4 rect, int offset);

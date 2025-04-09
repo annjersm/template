@@ -14,7 +14,16 @@ if (LINUX)
 elseif(MSVC)
 endif()
 
-add_executable (${PROJECT_NAME} src/main.c)
+file (GLOB UTIL_LIBRARY
+	src/util/matrix.c	src/util/matrix.h
+				src/util/type.h
+				src/util/vector.h
+)
+
+add_executable (${PROJECT_NAME}
+	src/main.c
+	${UITL_LIBRARY}
+)
 
 ## Link
 if (LINUX)
